@@ -1,0 +1,8 @@
+.gitignore
+gulpfile.js
+node_modules/*
+example/*
+src/*
+/webAPI 
+/html/*
+/build/*

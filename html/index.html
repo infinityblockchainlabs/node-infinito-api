@@ -1,0 +1,131 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>NODE INFINITO EXAMPLE</title>
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <style>
+    .highlight {
+      padding: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      background-color: #f7f7f9;
+    }
+  </style>
+  <div class="text-center">
+    <h1 class="mb-5 mt-5">EXAMPLE CALL INFINITO API</h1>
+  </div>
+  <div class="container">
+    <div id="restAPI" class="content">
+      <div class="row" v-cloak>
+        <div class="col-12 mb-3">
+          <form v-on:submit.prevent="onSubmit">
+            <div class="card">
+              <div class="card-header">
+                <strong>Input </strong>
+              </div>
+              <div class="card-body">
+                  <h5>Config:</h5>
+                  <div class="form-group row">
+                      <label for="version" class="col-sm-2 col-form-label">Base URL:</label>
+                      <div class="col-sm-10">
+                        <input v-model="config.baseUrl" type="text" class="form-control">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="version" class="col-sm-2 col-form-label">Api Key:</label>
+                      <div class="col-sm-10">
+                        <input v-model="config.apiKey" type="text" class="form-control">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="version" class="col-sm-2 col-form-label">Secret Key:</label>
+                      <div class="col-sm-10">
+                        <input v-model="config.secret" type="text" class="form-control">
+                      </div>
+                  </div>
+                <h5>Filter:</h5>
+                <div class="form-group row">
+                  <label for="version" class="col-sm-1 col-form-label">Version:</label>
+                  <div class="col-sm-2">
+                    <select v-model="form.version" class="form-control" v-on:change="changeVersion()">
+                      <option v-for="option in versionList" v-bind:value="option">
+                        {{ option }}
+                      </option>
+                    </select>
+                  </div>
+                  <label for="version" class="col-sm-1 col-form-label">Coin:</label>
+                  <div class="col-sm-2">
+                    <select v-model="form.coin" class="form-control" v-on:change="changeCoin()">
+                      <option v-for="option in coinList" v-bind:value="option">
+                        {{ option }}
+                      </option>
+                    </select>
+                  </div>
+                  <label for="version" class="col-sm-2 col-form-label">Function:</label>
+                  <div class="col-sm-2">
+                    <select v-model="form.function" class="form-control" v-on:change="changeFunction()">
+                      <option v-for="option in functionList" v-bind:value="option.name">
+                        {{ option.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <h5 v-if="input">Input function:</h5>
+                <p v-if="input" class="highlight">{{input}}</p>
+                <h5 v-if="paramList.length > 0">Enter params:</h5>
+                <div v-for="(item,index) in paramList" class="form-group row text-right">
+                  <label for="version" class="col-sm-2 col-form-label">{{item.name}}</label>
+                  <div class="col-sm-6">
+                    <input class="form-control" v-model="item.value">
+                  </div>
+                </div>
+                <h5 v-if="requestInfo.requestURL">Request URL:</h5>
+                <p v-if="requestInfo.requestURL" class="highlight">{{requestInfo.requestURL}}</p>
+                <button type="submit" class="btn btn-primary btn-sx float-right">Execute </button>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <strong>Output </strong>
+            </div>
+            <div class="card-body">
+              <pre v-if="output" v-html='output' class="highlight">
+                
+                </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="./dist/infinito-api.min.js">
+  </script>
+  <script src="./index.js">
+  </script>
+
+</body>
+
+</html>

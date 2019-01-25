@@ -1,0 +1,78 @@
+[
+  {
+    "name": "getBalance",
+    "method": "GET",
+    "url": "/NEO/addr/{addr}/{asset_id}/balance",
+    "params": [
+      "addr",
+      "asset_id"
+    ]
+  },
+  {
+    "name": "getHistory",
+    "method": "GET",
+    "url": "/NEO/addr/{addr}/txs?offset={offset}&limit={limit}",
+    "params": [
+      "addr",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "name": "getUtxo",
+    "method": "GET",
+    "url": "/NEO/addr/{addr}/{asset_id}/utxo",
+    "params": [
+      "addr",
+      "asset_id"
+    ]
+  },
+  {
+    "name": "getClaimable",
+    "method": "GET",
+    "url": "/NEO/addr/{addr}/claimable",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "getUnclaimed",
+    "method": "GET",
+    "url": "/NEO/addr/{addr}/unclaimed",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "sendTransaction",
+    "method": "POST",
+    "url": "/NEO/tx/send",
+    "params": []
+  },
+  {
+    "name": "getContractInfo",
+    "method": "GET",
+    "url": "/NEO/contract/{sc_addr}",
+    "params": [
+      "sc_addr"
+    ]
+  },
+  {
+    "name": "getContractBalance",
+    "method": "GET",
+    "url": "/NEO/contract/{sc_addr}/{addr}/balance",
+    "params": [
+      "sc_addr",
+      "addr"
+    ]
+  },
+  {
+    "name": "getContractHistory",
+    "method": "GET",
+    "url": "/NEO/contract/{sc_addr}/txs?address={address}",
+    "params": [
+      "sc_addr",
+      "address"
+    ]
+  }
+]

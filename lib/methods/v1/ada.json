@@ -1,0 +1,34 @@
+[
+  {
+    "name": "getBalance",
+    "method": "GET",
+    "url": "/ADA/addr/{addr}/balance",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "getHistory",
+    "method": "GET",
+    "url": "/ADA/addr/{addr}/txs?offset={offset}&limit={limit}",
+    "params": [
+      "addr",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "name": "getUtxo",
+    "method": "GET",
+    "url": "/ADA/addr/{addr}/utxo",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "sendTransaction",
+    "method": "POST",
+    "url": "/ADA/tx/send",
+    "params": []
+  }
+]

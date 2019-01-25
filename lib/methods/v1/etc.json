@@ -1,0 +1,58 @@
+[{
+    "name": "getHistory",
+    "method": "GET",
+    "url": "/ETC/addr/{addr}/txs?offset={offset}&limit={limit}",
+    "params": [
+      "addr",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "name": "getInternalHistory",
+    "method": "GET",
+    "url": "/ETC/addr/{addr}/itxs?offset={offset}&limit={limit}",
+    "params": [
+      "addr",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "name": "getNonce",
+    "method": "GET",
+    "url": "/ETC/addr/{addr}/nonce",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "getBalance",
+    "method": "GET",
+    "url": "/ETC/addr/{addr}/balance",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "getContractBalance",
+    "method": "GET",
+    "url": "/ETC/contract/{sc_addr}/{addr}/balance",
+    "params": [
+      "sc_addr",
+      "addr"
+    ]
+  },
+  {
+    "name": "sendTransaction",
+    "method": "POST",
+    "url": "/ETC/tx/send",
+    "params": []
+  },
+  {
+    "name": "getFeeRate",
+    "method": "GET",
+    "url": "/feerate/ETC",
+    "params": []
+  }
+]

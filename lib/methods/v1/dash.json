@@ -1,0 +1,97 @@
+[
+  {
+    "name": "getAddressInfo",
+    "method": "GET",
+    "url": "/DASH/addr/{address}",
+    "params": [
+      "address",
+      "fields"
+    ]
+  },
+  {
+    "name": "getBalance",
+    "method": "GET",
+    "url": "/DASH/addr/{address}/balance",
+    "params": [
+      "address"
+    ]
+  },
+  {
+    "name": "getHistory",
+    "method": "GET",
+    "url": "/DASH/addr/{address}/txs?offset={offset}&limit={limit}",
+    "params": [
+      "address",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "name": "getUtxo",
+    "method": "GET",
+    "url": "/DASH/addr/{address}/utxo?amount={amount}",
+    "params": [
+      "address",
+      "amount"
+    ]
+  },
+  {
+    "name": "sendTransaction",
+    "method": "POST",
+    "url": "/DASH/tx/send",
+    "params": []
+  },
+  {
+    "name": "getFeeRate",
+    "method": "GET",
+    "url": "/feerate/DASH",
+    "params": []
+  },
+  {
+    "name": "getTransaction",
+    "method": "GET",
+    "url": "/DASH/tx/{txId}",
+    "params": [
+      "txId"
+    ]
+  },
+  {
+    "name": "getRawTransaction",
+    "method": "GET",
+    "url": "/DASH/tx/{txId}/raw",
+    "params": [
+      "txId"
+    ]
+  },
+  {
+    "name": "getBlockHashByIndex",
+    "method": "GET",
+    "url": "/DASH/block-index/{index}",
+    "params": [
+      "index"
+    ]
+  },
+  {
+    "name": "getBlock",
+    "method": "GET",
+    "url": "/DASH/block/{blockId}",
+    "params": [
+      "blockId",
+      "noTx"
+    ]
+  },
+  {
+    "name": "getTransactionByBlock",
+    "method": "GET",
+    "url": "/DASH/block/{blockId}/txs",
+    "params": ["blockId"]
+  },
+  {
+    "name": "getRawBlock",
+    "method": "GET",
+    "url": "/DASH/block/{blockId}/raw",
+    "params": [
+      "blockId"
+    ]
+  }
+]

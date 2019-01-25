@@ -1,2 +1,3 @@
-# node-infinito-api
-node-infinito-api
+# Documentation
+
+- For Documentation, visit https://platform.infinito.io/docs/
