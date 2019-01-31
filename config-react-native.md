@@ -1,8 +1,7 @@
 # Set up with React native
 
-
-
 ### Installation guide
+
 1. Make sure you have Node version 6 or later installed, if not, get it on the [Node website](http://nodejs.org/)
 
 	`node --version`
@@ -13,27 +12,27 @@
 	`react-native init my-app`
 
 3. Install [node-libs-browser](https://github.com/webpack/node-libs-browser)
-	
-    `npm install --save node-libs-browser`
+
+	`npm install --save node-libs-browser`
 
 4. Install [react-native-randombytes](https://github.com/mvayngrib/react-native-randombytes)
 
-    `npm install --save react-native-randombytes`
+	`npm install --save react-native-randombytes`
 
 5. Create a file called *rn-cli.config.js* on the root of the project and add the following code into it:
-	
-    ```javascript
-   	module.exports = {
-  	  resolver: {
-        extraNodeModules: require('node-libs-browser')
-  	  }
+
+```javascript
+module.exports = {
+	resolver: {
+		extraNodeModules: require('node-libs-browser')
 	}
-	```
+}
+```
 
 6. Create a file called *global.js* on the root of the project and add the following code into it:
 
-	```javascript
-    // Inject node globals into React Native global scope.
+```javascript
+	// Inject node globals into React Native global scope.
 	// Inject node globals into React Native global scope.
 	global.Buffer = require('buffer').Buffer;
 	global.process = require('process');
@@ -44,41 +43,39 @@
 
 	// Needed so that 'stream-http' chooses the right default protocol.
 	global.location = {
-	  protocol: 'file:'
+		protocol: 'file:'
 	};
 
 	if (typeof btoa === 'undefined') {
-      global.btoa = function (str) {
-        return new Buffer(str, 'binary').toString('base64');
-      };
+		global.btoa = function (str) {
+			return new Buffer(str, 'binary').toString('base64');
+		};
 	}
 
 	if (typeof atob === 'undefined') {
-	  global.atob = function (b64Encoded) {
-		  return new Buffer(b64Encoded, 'base64').toString('binary');
-	  };
+		global.atob = function (b64Encoded) {
+			return new Buffer(b64Encoded, 'base64').toString('binary');
+		};
 	}
-
 	
 	global.crypto = {
-	  getRandomValues(byteArray) {
-	    let randomBytes = require('react-native-randombytes').randomBytes;
-	    const bytes = randomBytes(byteArray.length);
-	    for (var i = 0; i < bytes.length; i++) {
-	      byteArray[i] = bytes[i];
-	    }
-	  }
+		getRandomValues(byteArray) {
+			let randomBytes = require('react-native-randombytes').randomBytes;
+			const bytes = randomBytes(byteArray.length);
+			for (var i = 0; i < bytes.length; i++) {
+				byteArray[i] = bytes[i];
+			}
+		}
 	};
-
-	```
+```
     
 7. Import the *global.js* file into top of your *[index.js]()* file
 	
-    ```javascript
-   	import './global';
+```javascript
+import './global';
 	
-	// Current code of index.js file will be bellow here
-   	```
+// Current code of index.js file will be bellow here
+```
     
 8. Now we can install the `node-infinito-api`
 
@@ -86,9 +83,9 @@
     
 
 9. Using the infinito-api in your project
-	```javascript
-    const InfinitoApi = require('node-infinito-api');
-   	```
+```javascript
+const InfinitoApi = require('node-infinito-api');
+```
 
 10. Before build your app please run.
     `react-native link`
@@ -97,6 +94,6 @@
  1. `npm install rn-nodeify --save-dev`
  2. In file package.json. Add to 'script'
  
-    "postinstall": "node_modules/.bin/rn-nodeify --hack --install"
- 
-
+```
+	"postinstall": "node_modules/.bin/rn-nodeify --hack --install"
+```

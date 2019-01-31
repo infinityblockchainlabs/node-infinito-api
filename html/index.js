@@ -4,9 +4,9 @@ var appAPI = new Vue({
   el: '#restAPI',
   data: {
     config: {
-      baseUrl: 'https://staging-api-mainnet.infinitowallet.io',
-      apiKey: 'test',
-      secret: '123456',
+      baseUrl: 'https://api.infinito.io',
+      apiKey: '<YOUR API KEY>',
+      secret: '<YOUR SECRET KEY>',
     },
     form: {
       version: '',
@@ -107,7 +107,7 @@ var appAPI = new Vue({
         self.functionList
       );
       self.paramList = self.createParamList(paramList);
-      self.input = 'api.' + self.form.coin + '.' + self.form.function + '(';
+      self.input = 'api.' + self.form.coin + '.' + self.form.function+'(';
       for (var i = 0; i < self.paramList.length; i++) {
         if (i != self.paramList.length - 1) {
           self.input += self.paramList[i].name + ', ';

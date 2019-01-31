@@ -1,6 +1,6 @@
 {
   "name": "node-infinito-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Infinito Multichain API",
   "main": "./index.js",
   "scripts": {
@@ -12,6 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/infinityblockchainlabs/node-infinito-api.git"
   },
+  "keywords": [
+    "infinito",
+    "blockchain",
+    "SDK"
+  ],
   "author": "Infinito (https://platform.infinito.io/)",
   "license": "MIT",
   "bugs": {
