@@ -1,0 +1,100 @@
+[{
+    "name": "getAddressInfo",
+    "method": "GET",
+    "url": "/chains/v1/BTC/addr/{address}",
+    "params": [
+      "address"
+    ]
+  },
+  {
+    "name": "getBalance",
+    "method": "GET",
+    "url": "/chains/v1/BTC/addr/{address}/balance",
+    "params": [
+      "address"
+    ]
+  },
+  {
+    "name": "getHistory",
+    "method": "GET",
+    "url": "/chains/v1/BTC/addr/{address}/txs?offset={offset}&limit={limit}",
+    "params": [
+      "address",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "name": "getUtxo",
+    "method": "GET",
+    "url": "/chains/v1/BTC/addr/{address}/utxo?amount={amount}",
+    "params": [
+      "address",
+      "amount"
+    ]
+  },
+  {
+    "name": "sendTransaction",
+    "method": "POST",
+    "url": "/chains/v1/BTC/tx/send",
+    "params": []
+  },
+  {
+    "name": "getFeeRate",
+    "method": "GET",
+    "url": "/chains/v1/feerate/BTC",
+    "params": []
+  },
+  {
+    "name": "getTransaction",
+    "method": "GET",
+    "url": "/chains/v1/BTC/tx/{txid}",
+    "params": [
+      "txid"
+    ]
+  },
+  {
+    "name": "getRawTransaction",
+    "method": "GET",
+    "url": "/chains/v1/BTC/tx/{txId}/raw",
+    "params": [
+      "txId"
+    ]
+  },
+  {
+    "name": "getBlockHashByIndex",
+    "method": "GET",
+    "url": "/chains/v1/BTC/block-index/{index}",
+    "params": [
+      "index"
+    ]
+  },
+  {
+    "name": "getBlock",
+    "method": "GET",
+    "url": "/chains/v1/BTC/block/{blockId}",
+    "params": [
+      "blockId"
+    ]
+  },
+  {
+    "name": "getTransactionByBlock",
+    "method": "GET",
+    "url": "/chains/v1/BTC/block/{blockId}/txs",
+    "params": ["blockId"]
+  },
+  {
+    "name": "getRawBlock",
+    "method": "GET",
+    "url": "/chains/v1/BTC/block/{blockId}/raw",
+    "params": [
+      "blockId"
+    ]
+  },
+  {
+    "name": "sync",
+    "method": "GET",
+    "url": "/chains/v1/BTC/sync",
+    "params": []
+  }
+]

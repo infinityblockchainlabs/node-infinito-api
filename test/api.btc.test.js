@@ -32,26 +32,15 @@ const txId = 'bd589d1ae831ff536d76630c15c619a74c683d437ff69e8159321a080552496b';
 var api = null;
 var coinAPI = null;
 
-describe('api.btc', async() => {
-  beforeEach(async() => {
+describe('api.btc', async () => {
+  beforeEach(async () => {
     api = new InfinitoApi(opts);
-    // EXAMPLE FOR extendMethod
-    // let myMethods = [
-    //   {
-    //     "name": "getMyAddressInfo",
-    //     "method": "GET",
-    //     "url": "/BCH/addr/{address}",
-    //     "params": ["address"]
-    //   },
-    // ];
-    // api.extendMethod("test", myMethods);
-    // let result = await api.test.getMyAddressInfo("1Dp1TZfsMDfrNwuAzXi8mJwcXNA5xiHPor");
-    // console.log(result);
-    coinAPI = api.BTC;
+    // coinAPI = api.BTC;
+    coinAPI = api.getChainService().BTC;
   });
 
-  describe('#getBalance(address)', async() => {
-    it('Get balance first time', async() => {
+  describe('#getBalance(address)', async () => {
+    it('Get balance first time', async () => {
       var result = await coinAPI.getBalance(addresses.normal);
       Assert.ok(result.data.balance !== undefined, 'balance must be exist');
       Assert.ok(
@@ -60,10 +49,10 @@ describe('api.btc', async() => {
       );
     });
 
-    it('Get balance with wrong api key', async() => {
+    it('Get balance with wrong api key', async () => {
       coinAPI = new InfinitoApi(
         Helper.merge({}, opts, { apiKey: 'wrong api key' })
-      ).BTC;
+      ).getChainService().BTC;
 
       try {
         await coinAPI.getBalance(addresses.normal);
@@ -76,28 +65,50 @@ describe('api.btc', async() => {
     });
 
     it('test dynamic ', async() => {
-      let balance = await coinAPI.getBalance('getAddressInfogetAddressInfo');
+      let balance = await coinAPI.getBalance(addresses.normal);
       console.log('balance :', balance);
+
+      Assert.equal(balance.cd, 0);
+      balance.data.should.have.property('balance');
+      balance.data.should.have.property('unconfirmed_balance');
 
       let history = await coinAPI.getHistory(addresses.normal, 1, 2);
       console.log('history :', history);
+      Assert.equal(history.cd, 0);
+      history.data.should.have.property('total');
+      history.data.should.have.property('txs');
 
       let utxo = await coinAPI.getUtxo(addresses.normal);
       console.log('utxo :', utxo);
+      Assert.equal(utxo.cd, 0);
+      utxo.data.should.have.property('transactions');
     });
 
-    it('test dynamic expired key', async() => {
+    it('test dynamic expired key', async () => {
       api.tokenProvider.setToken(ConfigTest.EXPRIRED_TOKEN);
-      coinAPI.getBalance(addresses.normal);
-      coinAPI.getHistory(addresses.normal, 1, 2);
-      coinAPI.getUtxo(addresses.normal);
+      let balance = await coinAPI.getBalance(addresses.normal);
+      console.log('balance :', balance);
+
+      Assert.equal(balance.cd, 0);
+      balance.data.should.have.property('balance');
+      balance.data.should.have.property('unconfirmed_balance');
+
+      let history = await coinAPI.getHistory(addresses.normal, 1, 2);
+      console.log('history :', history);
+      Assert.equal(history.cd, 0);
+      history.data.should.have.property('total');
+      history.data.should.have.property('txs');
+
+      let utxo = await coinAPI.getUtxo(addresses.normal);
+      console.log('utxo :', utxo);
+      Assert.equal(utxo.cd, 0);
+      utxo.data.should.have.property('transactions');
     });
   });
 
-  /** ************************* Add get Address info *******************************/
   describe('#getInfo(address)', async() => {
     /* Testcase: Check with valid address*/
-    it('Check with valid address', async() => {
+    it('Check with valid address', async () => {
       let info = await coinAPI.getAddressInfo(addresses.normal);
       // console.log(info);
       info.should.have.property('cd');
@@ -111,14 +122,13 @@ describe('api.btc', async() => {
     });
   });
 
-  /** ************************ Add get Address history ******************************/
   describe('#getHistory(address)', async() => {
     /* Testcase:
           Input parameter:
             addr with >10 transaction
             no offset
             no limit*/
-    it('addr with >10 transaction | no offset | no limit', async() => {
+    it('addr with >10 transaction | no offset | no limit', async () => {
       let info = await coinAPI.getHistory(addresses.moreThan_10txs);
       // console.log(util.inspect(info, false, null));
       info.should.have.property('cd');
@@ -128,14 +138,24 @@ describe('api.btc', async() => {
       info.data.should.have.property('to');
       info.data.should.have.property('txs');
     });
+
+    it('offset, default limit', async() => {
+      let info = await coinAPI.getHistory(addresses.moreThan_10txs, 5);
+      console.log('info:', info);
+      info.should.have.property('cd');
+      info.should.have.property('data');
+      info.data.should.have.property('total');
+      info.data.should.have.property('from');
+      info.data.should.have.property('to');
+      info.data.should.have.property('txs');
+    });
   });
 
-  /** *********************** Add get Address utxo ****************************/
   describe('#getUtxo(address)', async() => {
     /* Testcase:
       Input parameter:
         addr with some utxo*/
-    it('addr with some utxo', async() => {
+    it('addr with some utxo', async () => {
       let info = await coinAPI.getUtxo(addresses.someUTXO);
       // console.log(util.inspect(info, false, null));
       info.should.have.property('cd');
@@ -144,7 +164,6 @@ describe('api.btc', async() => {
     });
   });
 
-  /** *********************** post Send Raw ***********************************/
   describe('#postSendRaw', async() => {
     it('send a tx', async() => {
       let res = await coinAPI.sendTransaction({ rawtx: rawtx });
@@ -153,8 +172,6 @@ describe('api.btc', async() => {
     });
   });
 
-  // -----------------------------------------------------------------------------------------------------
-  /** *********************** get Transaction Details ***********************************/
   describe('#getTransactionDetails', async() => {
     it('', async() => {
       let info = await coinAPI.getTransaction(txId);
@@ -168,7 +185,6 @@ describe('api.btc', async() => {
     });
   });
 
-  /** *********************** get Raw Transaction ***********************************/
   describe('#getRawTransaction', async() => {
     it('', async() => {
       let info = await coinAPI.getRawTransaction(txId);
@@ -178,7 +194,6 @@ describe('api.btc', async() => {
     });
   });
 
-  /** *********************** get Block Hash By Block Index ***********************************/
   describe('#getBlockHashByBlockIndex', async() => {
     it('', async() => {
       let info = await coinAPI.getBlockHashByIndex(index);
@@ -188,7 +203,6 @@ describe('api.btc', async() => {
     });
   });
 
-  /** *********************** get Block Info ***********************************/
   describe('#getBlockInfo', async() => {
     it('', async() => {
       let info = await coinAPI.getBlock(blockId);
@@ -212,7 +226,6 @@ describe('api.btc', async() => {
     });
   });
 
-  /** *********************** get Block Transactions ***********************************/
   describe('#getBlockTransactions', async() => {
     it('', async() => {
       let info = await coinAPI.getTransactionByBlock(blockId);
@@ -223,7 +236,6 @@ describe('api.btc', async() => {
     });
   });
 
-  /** *********************** get Raw Block ***********************************/
   describe('#getRawBlock', async() => {
     it('', async() => {
       let info = await coinAPI.getRawBlock(blockId);
@@ -233,4 +245,28 @@ describe('api.btc', async() => {
       info.data.should.have.property('raw_block');
     });
   });
+
+  describe('#getFeeRate', async() => {
+    it('', async() => {
+      let info = await coinAPI.getFeeRate();
+      console.log('info :', info);
+      info.should.have.property('cd');
+      info.should.have.property('data');
+      Assert.equal(info.data.BTC.name, 'BTC');
+      info.data.BTC.should.have.property('high');
+      info.data.BTC.should.have.property('medium');
+      info.data.BTC.should.have.property('low');
+    });
+  });
+
+  /** *********************** sync Block ***********************************/
+  describe('#sync', async() => {
+    it('', async() => {
+      let info = await coinAPI.sync();
+      info.should.have.property('cd');
+      info.should.have.property('data');
+      info.data.should.have.property('height');
+    });
+  });
+
 });

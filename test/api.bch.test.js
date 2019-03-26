@@ -221,4 +221,14 @@ describe('api.bch', async() => {
     });
   });
 
+  /** *********************** sync Block ***********************************/
+  describe('#sync', async() => {
+    it('', async() => {
+      let info = await coinAPI.sync();
+      info.should.have.property('cd');
+      info.should.have.property('data');
+      info.data.should.have.property('height');
+    });
+  });
+
 });

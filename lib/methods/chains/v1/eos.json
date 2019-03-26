@@ -1,0 +1,69 @@
+[{
+    "name": "getBalance",
+    "method": "GET",
+    "url": "/chains/v1/EOS/account/{account_name}/{asset_id}/balance",
+    "params": [
+      "account_name",
+      "asset_id"
+    ]
+  },
+  {
+    "name": "getAccounts",
+    "method": "GET",
+    "url": "/chains/v1/EOS/account/{pubkey}/accounts",
+    "params": [
+      "pubkey"
+    ]
+  },
+  {
+    "name": "getAccountInfo",
+    "method": "GET",
+    "url": "/chains/v1/EOS/account/{account_name}",
+    "params": [
+      "account_name"
+    ]
+  },
+  {
+    "name": "getBalanceByPubKey",
+    "method": "GET",
+    "url": "/chains/v1/EOS/pubkey/{pubkey}/{code}/{symbol}/balance",
+    "params": [
+      "pubkey",
+      "code",
+      "symbol"
+    ]
+  },
+  {
+    "name": "sendTransaction",
+    "method": "POST",
+    "url": "/chains/v1/EOS/tx/send",
+    "params": []
+  },
+  {
+    "name": "getRamPrice",
+    "method": "GET",
+    "url": "/chains/v1/EOS/price/ram",
+    "params": []
+  },
+  {
+    "name": "getCpuPrice",
+    "method": "GET",
+    "url": "/chains/v1/EOS/price/cpu_net",
+    "params": []
+  },
+  {
+    "name": "getContractInfo",
+    "method": "GET",
+    "url": "/chains/v1/EOS/contract",
+    "params": []
+  },
+  {
+    "name": "getContractBalance",
+    "method": "GET",
+    "url": "/chains/v1/EOS/account/{account}/{code}/{symbol}/balance",
+    "params": ["account",
+      "code",
+      "symbol"
+    ]
+  }
+]

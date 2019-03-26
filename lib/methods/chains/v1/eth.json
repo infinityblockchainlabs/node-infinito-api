@@ -1,0 +1,85 @@
+[{
+    "name": "getHistory",
+    "method": "GET",
+    "url": "/chains/v1/ETH/addr/{addr}/txs?offset={offset}&limit={limit}",
+    "params": [
+      "addr",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "name": "getInternalHistory",
+    "method": "GET",
+    "url": "/chains/v1/ETH/addr/{addr}/itxs?offset={offset}&limit={limit}",
+    "params": [
+      "addr",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "name": "getNonce",
+    "method": "GET",
+    "url": "/chains/v1/ETH/addr/{addr}/nonce",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "getBalance",
+    "method": "GET",
+    "url": "/chains/v1/ETH/addr/{addr}/balance",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "getContractList",
+    "method": "GET",
+    "url": "/chains/v1/ETH/contract",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "getContractInfo",
+    "method": "GET",
+    "url": "/chains/v1/ETH/contract/{sc_addr}",
+    "params": [
+      "sc_addr"
+    ]
+  },
+  {
+    "name": "getContractHistory",
+    "method": "GET",
+    "url": "/chains/v1/ETH/contract/{sc_addr}/txs?offset={offset}&limit={limit}&addr={addr}",
+    "params": [
+      "sc_addr",
+      "offset",
+      "limit",
+      "addr"
+    ]
+  },
+  {
+    "name": "getContractBalance",
+    "method": "GET",
+    "url": "/chains/v1/ETH/contract/{sc_addr}/{addr}/balance",
+    "params": [
+      "sc_addr",
+      "addr"
+    ]
+  },
+  {
+    "name": "sendTransaction",
+    "method": "POST",
+    "url": "/chains/v1/ETH/tx/send",
+    "params": []
+  },
+  {
+    "name": "getFeeRate",
+    "method": "GET",
+    "url": "/feerate/ETH",
+    "params": []
+  }
+]

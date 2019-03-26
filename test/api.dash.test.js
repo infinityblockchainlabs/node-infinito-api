@@ -33,14 +33,14 @@ const txId = 'd90c27d3da1fab4961d98e9d2abccf380fa9a2ce5ab74c8dfccadf7fda266714';
 var api = null;
 var coinAPI = null;
 
-describe('api.dash', async() => {
-  beforeEach(async() => {
+describe('api.dash', async () => {
+  beforeEach(async () => {
     api = new InfinitoApi(opts);
     coinAPI = api.DASH;
   });
 
-  describe('#getBalance(address)', async() => {
-    it('Get balance first time', async() => {
+  describe('#getBalance(address)', async () => {
+    it('Get balance first time', async () => {
       var result = await coinAPI.getBalance(addresses.normal);
       Assert.ok(result.data.balance !== undefined, 'balance must be exist');
       Assert.ok(
@@ -49,7 +49,7 @@ describe('api.dash', async() => {
       );
     });
 
-    it('Get balance with wrong api key', async() => {
+    it('Get balance with wrong api key', async () => {
       coinAPI = new InfinitoApi(
         Helper.merge({}, opts, { apiKey: 'wrong api key' })
       ).DASH;
@@ -63,7 +63,7 @@ describe('api.dash', async() => {
       }
     });
 
-    it('test dynamic ', async() => {
+    it('test dynamic ', async () => {
       let balance = await coinAPI.getBalance(addresses.normal);
       console.log('balance :', balance);
 
@@ -74,7 +74,7 @@ describe('api.dash', async() => {
       console.log('utxo :', utxo);
     });
 
-    it('test dynamic expired key', async() => {
+    it('test dynamic expired key', async () => {
       api.tokenProvider.setToken(ConfigTest.EXPRIRED_TOKEN);
 
       coinAPI.getBalance(addresses.normal);
@@ -84,9 +84,9 @@ describe('api.dash', async() => {
   });
 
   /** ************************* Add get Address info *******************************/
-  describe('#getInfo(address)', async() => {
+  describe('#getInfo(address)', async () => {
     /* Testcase: Check with valid address*/
-    it('Check with valid address', async() => {
+    it('Check with valid address', async () => {
       let info = await coinAPI.getAddressInfo(addresses.normal);
       // console.log(info);
       info.should.have.property('cd');
@@ -101,13 +101,13 @@ describe('api.dash', async() => {
   });
 
   /** ************************ Add get Address history ******************************/
-  describe('#getHistory(address)', async() => {
+  describe('#getHistory(address)', async () => {
     /* Testcase:
           Input parameter:
             addr with >10 transaction
             no offset
             no limit*/
-    it('addr with >10 transaction | no offset | no limit', async() => {
+    it('addr with >10 transaction | no offset | no limit', async () => {
       let info = await coinAPI.getHistory(addresses.moreThan_10txs);
       // console.log(util.inspect(info, false, null));
       info.should.have.property('cd');
@@ -120,11 +120,11 @@ describe('api.dash', async() => {
   });
 
   /** *********************** Add get Address utxo ****************************/
-  describe('#getUtxo(address)', async() => {
+  describe('#getUtxo(address)', async () => {
     /* Testcase:
       Input parameter:
         addr with some utxo*/
-    it('addr with some utxo', async() => {
+    it('addr with some utxo', async () => {
       let info = await coinAPI.getUtxo(addresses.someUTXO);
       // console.log(util.inspect(info, false, null));
       info.should.have.property('cd');
@@ -134,8 +134,8 @@ describe('api.dash', async() => {
   });
 
   /** *********************** post Send Raw ***********************************/
-  describe('#postSendRaw', async() => {
-    it('send a tx', async() => {
+  describe('#postSendRaw', async () => {
+    it('send a tx', async () => {
       let res = await coinAPI.sendTransaction({ rawtx: rawtx });
       console.log(res);
       res.should.have.property('cd');
@@ -144,8 +144,8 @@ describe('api.dash', async() => {
 
   // -----------------------------------------------------------------------------------------------------
   /** *********************** get Transaction Details ***********************************/
-  describe('#getTransactionDetails', async() => {
-    it('', async() => {
+  describe('#getTransactionDetails', async () => {
+    it('', async () => {
       let info = await coinAPI.getTransaction(txId);
       info.should.have.property('cd');
       info.should.have.property('data');
@@ -164,8 +164,8 @@ describe('api.dash', async() => {
   });
 
   /** *********************** get Raw Transaction ***********************************/
-  describe('#getRawTransaction', async() => {
-    it('', async() => {
+  describe('#getRawTransaction', async () => {
+    it('', async () => {
       let info = await coinAPI.getRawTransaction(txId);
       info.should.have.property('cd');
       info.should.have.property('data');
@@ -174,8 +174,8 @@ describe('api.dash', async() => {
   });
 
   /** *********************** get Block Hash By Block Index ***********************************/
-  describe('#getBlockHashByBlockIndex', async() => {
-    it('', async() => {
+  describe('#getBlockHashByBlockIndex', async () => {
+    it('', async () => {
       let info = await coinAPI.getBlockHashByIndex(index);
       info.should.have.property('cd');
       info.should.have.property('data');
@@ -184,8 +184,8 @@ describe('api.dash', async() => {
   });
 
   /** *********************** get Block Info ***********************************/
-  describe('#getBlockInfo', async() => {
-    it('', async() => {
+  describe('#getBlockInfo', async () => {
+    it('', async () => {
       let info = await coinAPI.getBlock(blockId);
       info.should.have.property('cd');
       info.should.have.property('data');
@@ -208,8 +208,8 @@ describe('api.dash', async() => {
   });
 
   /** *********************** get Block Transactions ***********************************/
-  describe('#getBlockTransactions', async() => {
-    it('', async() => {
+  describe('#getBlockTransactions', async () => {
+    it('', async () => {
       let info = await coinAPI.getTransactionByBlock(blockId);
       info.should.have.property('cd');
       info.should.have.property('data');
@@ -219,13 +219,23 @@ describe('api.dash', async() => {
   });
 
   /** *********************** get Raw Block ***********************************/
-  describe('#getRawBlock', async() => {
-    it('', async() => {
+  describe('#getRawBlock', async () => {
+    it('', async () => {
       let info = await coinAPI.getRawBlock(blockId);
       info.should.have.property('cd');
       info.should.have.property('data');
       info.data.should.have.property('raw_block');
 
+    });
+  });
+
+  /** *********************** sync Block ***********************************/
+  describe('#sync', async() => {
+    it('', async() => {
+      let info = await coinAPI.sync();
+      info.should.have.property('cd');
+      info.should.have.property('data');
+      info.data.should.have.property('height');
     });
   });
 

@@ -1,12 +1,13 @@
 {
   "name": "node-infinito-api",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Infinito Multichain API",
   "main": "./index.js",
   "scripts": {
     "eslint": "eslint .",
     "eslint:fix": "eslint --fix .",
-    "test": "mocha --timeout 10000 --reporter mochawesome --reporter-options reportDir=./build/test-report"
+    "test": "mocha --timeout 10000 --reporter mochawesome --reporter-options reportDir=./build/test-report",
+    "test:nyc": "nyc mocha --timeout 10000 --reporter mochawesome --reporter-options reportDir=./build/test-report"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,7 @@
   },
   "homepage": "https://platform.infinito.io/",
   "devDependencies": {
-    "@babel/core": "^7.1.2",
+    "@babel/core": "^7.4.0",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-regenerator": "^6.26.0",
@@ -33,7 +34,7 @@
     "browserify": "^16.2.2",
     "chai": "^4.1.2",
     "dotenv": "^6.2.0",
-    "eslint": "^5.2.0",
+    "eslint": "^5.15.3",
     "eslint-plugin-prettier": "^3.0.1",
     "gulp": "^4.0.0",
     "gulp-rename": "^1.2.0",
@@ -42,13 +43,14 @@
     "gulp4-run-sequence": "^0.2.1",
     "mocha": "^5.2.0",
     "mochawesome": "^3.1.1",
+    "nyc": "^13.3.0",
     "pump": "^3.0.0",
     "rimraf": "~2.6.2",
     "vinyl-source-stream": "^2.0.0",
-    "watchify": "^3.11.0"
+    "watchify": "^3.11.1"
   },
   "dependencies": {
-    "node-infinito-util": "^1.0.0",
+    "node-infinito-util": "^1.0.1",
     "sha.js": "^2.4.11",
     "string-template": "^1.0.0"
   }

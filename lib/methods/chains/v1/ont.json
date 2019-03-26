@@ -1,0 +1,31 @@
+[{
+    "name": "getBalance",
+    "method": "GET",
+    "url": "/chains/v1/ONT/addr/{addr}/balance",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "sendTransaction",
+    "method": "POST",
+    "url": "/chains/v1/ONT/tx/send",
+    "params": []
+  },
+  {
+    "name": "getClaimable",
+    "method": "GET",
+    "url": "/chains/v1/ONT/addr/{addr}/claimable",
+    "params": [
+      "addr"
+    ]
+  },
+  {
+    "name": "getUnclaimed",
+    "method": "GET",
+    "url": "/chains/v1/ONT/addr/{addr}/unclaimed",
+    "params": [
+      "addr"
+    ]
+  }
+]

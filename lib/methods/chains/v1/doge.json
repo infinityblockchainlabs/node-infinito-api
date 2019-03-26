@@ -1,0 +1,102 @@
+[{
+    "name": "getAddressInfo",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/addr/{address}",
+    "params": [
+      "address",
+      "fields"
+    ]
+  },
+  {
+    "name": "getBalance",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/addr/{address}/balance",
+    "params": [
+      "address"
+    ]
+  },
+  {
+    "name": "getHistory",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/addr/{address}/txs?offset={offset}&limit={limit}",
+    "params": [
+      "address",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "name": "getUtxo",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/addr/{address}/utxo?amount={amount}",
+    "params": [
+      "address",
+      "amount"
+    ]
+  },
+  {
+    "name": "sendTransaction",
+    "method": "POST",
+    "url": "/chains/v1/DOGE/tx/send",
+    "params": []
+  },
+  {
+    "name": "getFeeRate",
+    "method": "GET",
+    "url": "/chains/v1/feerate/DOGE",
+    "params": []
+  },
+  {
+    "name": "getTransaction",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/tx/{txId}",
+    "params": [
+      "txId"
+    ]
+  },
+  {
+    "name": "getRawTransaction",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/tx/{txId}/raw",
+    "params": [
+      "txId"
+    ]
+  },
+  {
+    "name": "getBlockHashByIndex",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/block-index/{index}",
+    "params": [
+      "index"
+    ]
+  },
+  {
+    "name": "getBlock",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/block/{blockId}",
+    "params": [
+      "blockId",
+      "noTx"
+    ]
+  },
+  {
+    "name": "getTransactionByBlock",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/block/{blockId}/txs",
+    "params": ["blockId"]
+  },
+  {
+    "name": "getRawBlock",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/block/{blockId}/raw",
+    "params": [
+      "blockId"
+    ]
+  },
+  {
+    "name": "sync",
+    "method": "GET",
+    "url": "/chains/v1/DOGE/sync",
+    "params": []
+  }
+]
