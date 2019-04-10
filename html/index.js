@@ -9,12 +9,15 @@ var appAPI = new Vue({
       secret: '<YOUR SECRET KEY>',
     },
     form: {
+      service:"",
       version: '',
       coin: '',
       function: '',
     },
     inputData: null,
     objCoins: null,
+    objVersion:null,
+    serviceList:[],
     versionList: [],
     coinList: [],
     functionList: [],
@@ -31,7 +34,7 @@ var appAPI = new Vue({
     let self = this;
     self.inputData = inputData;
     for (var item in inputData) {
-      this.versionList.push(item);
+      this.serviceList.push(item);
     }
 
     // detect call ajax to
@@ -64,9 +67,35 @@ var appAPI = new Vue({
     window.XMLHttpRequest = newXHR;
   },
   methods: {
-    changeVersion: function() {
+    changeService: function(){
       let self = this;
 
+      // RESET
+      self.versionList = [];
+      self.functionList = [];
+      self.paramList = [];
+      self.input = '';
+      self.output = null;
+      self.requestInfo = {
+        requestURL: '',
+        statusCode: '',
+      };
+      //reset form
+      self.form.version ="";
+      self.form.coin ="";
+      self.form.function ="";
+
+      self.objVersion = self.getObjectChildFromKeyName(
+        self.form.service,
+        inputData
+      );
+      self.versionList = self.getKeyListFromObject(self.objVersion);
+    },
+    changeVersion: function() {
+      let self = this;
+      if(!self.form.version){
+        return;
+      }
       // RESET
       self.functionList = [];
       self.input = '';
@@ -75,12 +104,28 @@ var appAPI = new Vue({
         requestURL: '',
         statusCode: '',
       };
+      if(self.form.service === 'chains'){
+        self.objCoins = self.getObjectChildFromKeyName(
+          self.form.version,
+          inputData
+        );
+        self.coinList = self.getKeyListFromObject(self.objCoins);
+      }else{
 
-      self.objCoins = self.getObjectChildFromKeyName(
-        self.form.version,
-        inputData
-      );
-      self.coinList = self.getKeyListFromObject(self.objCoins);
+        self.objVersion = self.getObjectChildFromKeyName(
+          self.form.service,
+          inputData
+        );
+        self.objCoins = self.getObjectChildFromKeyName(
+          self.form.version,
+          self.objVersion
+        );
+        self.functionList = self.getObjectChildFromKeyName(
+          self.form.service,
+          self.objCoins
+        );
+      }
+   
     },
     changeCoin: function() {
       var self = this;
@@ -107,7 +152,12 @@ var appAPI = new Vue({
         self.functionList
       );
       self.paramList = self.createParamList(paramList);
-      self.input = 'api.' + self.form.coin + '.' + self.form.function+'(';
+      if(self.form.service ==='chains'){
+        self.input = `api.getService('${self.form.service}','${self.form.version}').${self.form.coin}.${self.form.function}(`;
+      }else{
+        self.input = `api.getService('${self.form.service}','${self.form.version}').${self.form.function}(`;
+      }
+     
       for (var i = 0; i < self.paramList.length; i++) {
         if (i != self.paramList.length - 1) {
           self.input += self.paramList[i].name + ', ';
@@ -139,7 +189,7 @@ var appAPI = new Vue({
     },
     getObjectChildFromKeyName: function(keyName, objectParent) {
       for (var item in objectParent) {
-        if (keyName == item) {
+        if (keyName.toLowerCase() == item.toLowerCase()) {
           var objectChild = objectParent[item];
           return objectChild;
         }

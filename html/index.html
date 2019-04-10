@@ -56,25 +56,33 @@
                   </div>
                 <h5>Filter:</h5>
                 <div class="form-group row">
-                  <label for="version" class="col-sm-1 col-form-label">Version:</label>
+                  <label for="version" class="col-sm-1 col-form-label">Service</label>
+                    <div class="col-sm-2">
+                      <select v-model="form.service" class="form-control" v-on:click="changeService()">
+                        <option v-for="option in serviceList" v-bind:value="option">
+                          {{ option }}
+                        </option>
+                      </select>
+                    </div>
+                  <label for="version" class="col-sm-1 col-form-label">Version</label>
                   <div class="col-sm-2">
-                    <select v-model="form.version" class="form-control" v-on:change="changeVersion()">
+                    <select v-model="form.version" class="form-control" v-on:click="changeVersion()">
                       <option v-for="option in versionList" v-bind:value="option">
                         {{ option }}
                       </option>
                     </select>
                   </div>
-                  <label for="version" class="col-sm-1 col-form-label">Coin:</label>
-                  <div class="col-sm-2">
-                    <select v-model="form.coin" class="form-control" v-on:change="changeCoin()">
+                  <label v-if="form.service ==='chains'" for="version" class="col-sm-1 col-form-label">Coin</label>
+                  <div v-if="form.service ==='chains'" class="col-sm-2">
+                    <select v-model="form.coin" class="form-control" v-on:click="changeCoin()">
                       <option v-for="option in coinList" v-bind:value="option">
                         {{ option }}
                       </option>
                     </select>
                   </div>
-                  <label for="version" class="col-sm-2 col-form-label">Function:</label>
+                  <label for="version" class="col-sm-1 col-form-label">Function</label>
                   <div class="col-sm-2">
-                    <select v-model="form.function" class="form-control" v-on:change="changeFunction()">
+                    <select v-model="form.function" class="form-control" v-on:click="changeFunction()">
                       <option v-for="option in functionList" v-bind:value="option.name">
                         {{ option.name }}
                       </option>

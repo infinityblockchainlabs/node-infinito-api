@@ -1,4 +1,5 @@
-[{
+[
+  {
     "name": "getHistory",
     "method": "GET",
     "url": "/chains/v1/ETH/addr/{addr}/txs?offset={offset}&limit={limit}",
@@ -79,7 +80,7 @@
   {
     "name": "getFeeRate",
     "method": "GET",
-    "url": "/feerate/ETH",
+    "url": "/chains/v1/feerate/ETH",
     "params": []
   }
 ]
