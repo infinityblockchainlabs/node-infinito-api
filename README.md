@@ -19,10 +19,16 @@ const opts = {
   // baseUrl: 'https://sandbox-api.infinito.io',  // Sandbox (Testnet): support only BTC, DASH, ETH, NEO, EOS 
 };
 const api = new InfinitoApi(opts);
-const coinAPI = api.getChainService().BTC;
 
 (async() => {
-  var result = await coinAPI.getBalance('1Dp1TZfsMDfrNwuAzXi8mJwcXNA5xiHPor');
-  console.log('result :', result);
+  // Use multi-chain api
+  const btcAPI = api.getChainService().BTC;
+  var balance = await btcAPI.getBalance('1Dp1TZfsMDfrNwuAzXi8mJwcXNA5xiHPor');
+  console.log('balance :', balance);
+
+  // Use exchange-api
+  const exchangeAPI = api.getExchangeService();
+  var currencies = await exchangeAPI.getCurrencies();
+  console.log('currencies :', currencies);
 })();
 ```

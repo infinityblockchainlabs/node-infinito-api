@@ -1,0 +1,48 @@
+[
+  {
+    "name": "getBalance",
+    "method": "GET",
+    "url": "/chains/v1/OMNI/addr/{address}/balance?propertyid={propertyid}",
+    "params": [
+      "address",
+      "propertyid"
+    ]
+  },
+  {
+    "name": "getHistory",
+    "method": "GET",
+    "url": "/chains/v1/OMNI/addr/{address}/txs?page={page}",
+    "params": [
+      "address",
+      "page"
+    ]
+  },
+  {
+    "name": "getUtxo",
+    "method": "GET",
+    "url": "/chains/v1/OMNI/addr/{address}/utxo",
+    "params": [
+      "address"
+    ]
+  },
+  {
+    "name": "sendTransaction",
+    "method": "POST",
+    "url": "/chains/v1/OMNI/tx/send",
+    "params": []
+  },
+  {
+    "name": "getTransaction",
+    "method": "GET",
+    "url": "/chains/v1/OMNI/tx/{txid}",
+    "params": [
+      "txid"
+    ]
+  },
+  {
+    "name": "getFeeRate",
+    "method": "GET",
+    "url": "/chains/v1/feerate/OMNI",
+    "params": []
+  }
+]

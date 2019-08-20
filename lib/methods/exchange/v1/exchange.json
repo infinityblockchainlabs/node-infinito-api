@@ -1,0 +1,59 @@
+[{
+  "name": "getCurrencies",
+  "method": "GET",
+  "url": "/exchange/v1/currencies?symbol={symbol}&offset={offset}&limit={limit}",
+  "params": [
+    "symbol",
+    "offset",
+    "limit"
+  ]
+},
+{
+  "name": "getTransactions",
+  "method": "GET",
+  "url": "/exchange/v1/transactions?offset={offset}&limit={limit}",
+  "params": [    
+    "offset",
+    "limit"
+  ]
+},
+{
+  "name": "createTransaction",
+  "method": "POST",
+  "url": "/exchange/v1/transactions",
+  "params": []
+},
+{
+  "name": "getTransaction",
+  "method": "GET",
+  "url": "/exchange/v1/transactions/{id}",
+  "params": [
+    "id"
+  ]
+},
+{
+  "name": "estimateTransaction",
+  "method": "GET",
+  "url": "/exchange/v1/transactions/estimate?from={from}&to={to}&amount={amount}",
+  "params": [
+    "from",
+    "to",
+    "amount"
+  ]
+},
+{
+  "name": "getMinAmount",
+  "method": "GET",
+  "url": "/exchange/v1/transactions/min-amount?provider={provider}&from={from}&to={to}",
+  "params": [
+    "provider",
+    "from",
+    "to"
+  ]
+},
+{
+  "name": "broadcastTransaction",
+  "method": "POST",
+  "url": "/exchange/v1/transactions/broadcast",
+  "params": []
+}]
